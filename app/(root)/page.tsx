@@ -14,10 +14,47 @@ export default async function Home({
       image:
         "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
       title: "string",
-      description: "description",
-      author: "author",
+      description:
+        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
+      author: { _id: 1, name: "name", image: "image" },
       category: "category",
-      createdAt: "date",
+      createdAt: new Date(),
+      views: 55,
+    },
+    {
+      _id: 1,
+      image:
+        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+      title: "string",
+      description:
+        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
+      author: { _id: 1, name: "name", image: "image" },
+      category: "category",
+      createdAt: new Date(),
+      views: 55,
+    },
+    {
+      _id: 1,
+      image:
+        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+      title: "string",
+      description:
+        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
+      author: { _id: 1, name: "name", image: "image" },
+      category: "category",
+      createdAt: new Date(),
+      views: 55,
+    },
+    {
+      _id: 1,
+      image:
+        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
+      title: "string",
+      description:
+        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
+      author: { _id: 1, name: "name", image: "image" },
+      category: "category",
+      createdAt: new Date(),
       views: 55,
     },
   ];
@@ -35,9 +72,11 @@ export default async function Home({
         <SearchForm query={query} />
       </section>
 
-      <section className="-white">
-        <p>{query ? "search results for: " + query : "All startups"}</p>
-        <ul>
+      <section className="section_container">
+        <p className="text-30-semibold">
+          {query ? "search results for: " + query : "All startups"}
+        </p>
+        <ul className="mt-7 card_grid">
           {posts.map((post) => (
             <StartupCard key={post?._id} post={post} />
           ))}
