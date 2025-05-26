@@ -1,5 +1,7 @@
 import SearchForm from "@/components/SearchForm";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -8,56 +10,10 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
 
-  const posts = [
-    {
-      _id: 1,
-      image:
-        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-      title: "string",
-      description:
-        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
-      author: { _id: 1, name: "name", image: "image" },
-      category: "category",
-      createdAt: new Date(),
-      views: 55,
-    },
-    {
-      _id: 1,
-      image:
-        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-      title: "string",
-      description:
-        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
-      author: { _id: 1, name: "name", image: "image" },
-      category: "category",
-      createdAt: new Date(),
-      views: 55,
-    },
-    {
-      _id: 1,
-      image:
-        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-      title: "string",
-      description:
-        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
-      author: { _id: 1, name: "name", image: "image" },
-      category: "category",
-      createdAt: new Date(),
-      views: 55,
-    },
-    {
-      _id: 1,
-      image:
-        "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-      title: "string",
-      description:
-        "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus",
-      author: { _id: 1, name: "name", image: "image" },
-      category: "category",
-      createdAt: new Date(),
-      views: 55,
-    },
-  ];
+  const posts = await client.fetch(STARTUPS_QUERY);
+
+  console.log(JSON.stringify(posts, null, 2));
+
   return (
     <>
       <section className="pink_container">
@@ -77,8 +33,8 @@ export default async function Home({
           {query ? "search results for: " + query : "All startups"}
         </p>
         <ul className="mt-7 card_grid">
-          {posts.map((post) => (
-            <StartupCard key={post?._id} post={post} />
+          {posts.map((posts: StartupTypeCard) => (
+            <StartupCard key={posts?._id} post={posts} />
           ))}
         </ul>
       </section>

@@ -32,18 +32,21 @@ const Navbar = async () => {
               </Link>
             </>
           ) : (
-            <form
-              action={async () => {
-                "use server";
-                const res = await signIn("github", { redirectTo: "/" });
-                console.log(res ? res : "no url");
-              }}
-            >
-              <button type="submit" className="text-default">
-                {" "}
-                LogIn{" "}
-              </button>
-            </form>
+            <div>
+              <Link href="/login">login</Link>
+              <form
+                action={async () => {
+                  "use server";
+                  const res = await signIn("github", { redirectTo: "/" });
+                  console.log(res ? res : "no url");
+                }}
+              >
+                <button type="submit" className="text-default">
+                  {" "}
+                  LogIn{" "}
+                </button>
+              </form>
+            </div>
           )}
         </div>
       </nav>
